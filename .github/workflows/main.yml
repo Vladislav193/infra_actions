@@ -1,7 +1,7 @@
 name: Django-app workflow
 
 on: [push]
-
+#тест для Github
 jobs:
   tests:
     # «Раннер» — создание изолированного окружения с последней версией Ubuntu 
