@@ -38,7 +38,7 @@ jobs:
       steps:
         - name: Check out the repo
           # Проверка доступности репозитория Docker Hub для workflow
-          uses: actions/checkout@v2 
+          uses: actions/checkout@v3 
         - name: Set up Docker Buildx
           # Вызов сборщика контейнеров docker
           uses: docker/setup-buildx-action@v1 
@@ -50,7 +50,7 @@ jobs:
             password: ${{ secrets.DOCKER_PASSWORD }}
         - name: Push to Docker Hub
           # Пуш образа в Docker Hub 
-          uses: docker/build-push-action@v2 
+          uses: docker/build-push-action@v3 
           with:
             push: true
             tags: vladislav193/none:v2
@@ -67,7 +67,7 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }} # Если ваш ssh-ключ защищён фразой-паролем
           script: |
             # Выполняет pull образа с DockerHub
-            sudo docker pull <имя-пользователя>/<имя-репозитория>
+            sudo docker pull vladislav193/none
             #остановка всех контейнеров
             sudo docker stop $(sudo docker ps -a -q)
-            sudo docker run --rm -d -p 5000:5000 <имя-пользователя>/<имя-репозитория>
+            sudo docker run --rm -d -p 5000:5000 vladislav193/none
